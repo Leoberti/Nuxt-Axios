@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1> Hello from results  route {{$route.params.id}}</h1>
+    <h1> Resultados para {{$route.params.id}}</h1>
+    <div v-if="albumExists">
   {{albumData}}
+    </div>
+  <div v-else>
+      <h1>Não achei esse ser</h1>
+    </div>
   </div>
 </template>
 
@@ -15,6 +20,12 @@ export default {
       return {albumData: response.data.results}
     });
   },
-  middleware: 'search'
+  middleware: 'search',
+  computed: {
+    albumExists(){
+      return this.albumData.length > 0;
+
+    }
+  }
 }
 </script>
