@@ -2,7 +2,7 @@
   <v-toolbar dark color="blue">
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title class="white--text">
-      <nuxt-link class="title" to="/">iTunes Search</nuxt-link>
+      <nuxt-link class="title" to="/">Pesquisa no Itunes</nuxt-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn to="/" icon>

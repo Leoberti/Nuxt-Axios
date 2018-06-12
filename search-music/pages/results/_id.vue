@@ -1,8 +1,19 @@
 <template>
   <div>
     <h1> Resultados para {{$route.params.id}}</h1>
+
     <div v-if="albumExists">
-  {{albumData}}
+      <div v-for="(album, index) in albumData">
+         <card
+            :title="album.collectionCensoredName"
+            :image="album.artworkUrl100"
+            :artistName="album.artistName"
+            :url="album.artistViewUrl"
+            :color="picker(index)"
+            >
+         </card>
+     </div>
+
     </div>
   <div v-else>
       <h1>Não achei esse ser</h1>
@@ -12,6 +23,7 @@
 
 <script>
 import axios from 'axios';
+import card from '~/components/card.vue';
 export default {
   asyncData ({params}){
 
@@ -19,6 +31,14 @@ export default {
     .then((response) => {
       return {albumData: response.data.results}
     });
+  },
+  components:{
+    card
+  },
+  methods:{
+    picker(index){
+      return index % 2 == 0 ? 'red' : 'blue';
+    }
   },
   middleware: 'search',
   computed: {
